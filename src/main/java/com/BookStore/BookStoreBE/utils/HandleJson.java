@@ -19,7 +19,7 @@ public class HandleJson {
         return map.get(key);
     }
 
-    public static Book convertToPojo(String jsonString) throws JsonProcessingException {
+    public static Book convertToBookPojo(String jsonString) throws JsonProcessingException {
         ObjectMapper mapper= new ObjectMapper();
         return mapper.readValue(jsonString, Book.class);
     }
