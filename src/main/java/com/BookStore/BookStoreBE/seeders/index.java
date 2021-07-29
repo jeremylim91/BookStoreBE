@@ -20,9 +20,12 @@ public class index implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        //  Prevent double-seeding of data
+        if (bookService.count()>0) return;
+        //Else the db is empty; seed the data inside
         try {
         ObjectMapper mapper = new ObjectMapper();
-//         Get the Json array from the books.json folder, then save it as a list
+        //Get the Json array from the books.json folder, then save it as a list
         List<Book> books = Arrays.asList(mapper.readValue(Paths.get("src/main/java/com/BookStore" +
                         "/BookStoreBE/seeders/books.json").toFile(),
                 Book[].class));
