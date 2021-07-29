@@ -13,6 +13,8 @@ public interface BookRepository extends MongoRepository<Book, String> {
     @Override
     List<Book> findAll(Sort sort);
 
+    List<Book> findAllByOrderByTitleAsc();
+
     List <Book> findBooksByTitle (String title);
 
     Book insert(Book newBook);
@@ -25,4 +27,10 @@ public interface BookRepository extends MongoRepository<Book, String> {
 
     @Override
     Optional<Book> findById(String s);
+
+    @Override
+    Book save(Book book);
+
+    @Override
+    long count();
 }
