@@ -6,6 +6,7 @@ import com.BookStore.BookStoreBE.utils.HandleJson;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -79,6 +80,19 @@ public class BookService {
         return books;
         }catch (Exception e){
             System.out.println("Error trying to find book by title");
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public List<Book> findByText(String text){
+        try{
+            List books= bookRepository.findAllBy(TextCriteria.forDefaultLanguage().matching(text));
+//      Validation if list is empty
+            if (books.size()<1) return null;
+            return books;
+        }catch (Exception e){
+            System.out.println("Error trying to find book by text");
             System.out.println(e);
             return null;
         }

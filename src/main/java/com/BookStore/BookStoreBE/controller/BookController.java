@@ -52,6 +52,17 @@ public class BookController {
         return ResponseEntity.status(200).body(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(allBooks));
     }
 
+    @RequestMapping("/books/findByText")
+    public ResponseEntity <String> findByText(@RequestParam String text) throws JsonProcessingException {
+        List <Book> allBooks= bookService.findByText(text);
+        //If allBooks is an empty list, then no books were found. Send a 500 error
+        if  (allBooks==null){
+            return ResponseEntity.status(500).body("No books with the specified title found");
+        }
+        //Else allBooks list is not empty, JSON stringify the list and return it to FE
+        return ResponseEntity.status(200).body(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(allBooks));
+    }
+
     //    ==========UPDATE=======
     @PutMapping("/books/updateBook")
     public ResponseEntity<String> updateBook(@RequestBody String newDetails) throws JsonProcessingException {

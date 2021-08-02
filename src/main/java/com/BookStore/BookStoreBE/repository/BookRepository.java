@@ -2,6 +2,7 @@ package com.BookStore.BookStoreBE.repository;
 
 import com.BookStore.BookStoreBE.model.Book;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,9 @@ public interface BookRepository extends MongoRepository<Book, String> {
     @Override
     List<Book> findAll(Sort sort);
 
-    List<Book> findAllByOrderByTitleAsc();
+    List<Book> findAllBy(TextCriteria criteria);
+
+//    List<Book> findAllByOrderByTitleAsc();
 
     List <Book> findBooksByTitle (String title);
 
