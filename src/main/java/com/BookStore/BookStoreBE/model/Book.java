@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +17,12 @@ import java.util.ArrayList;
 public class Book {
     @Id
     private String id;
+    @TextIndexed
     private String title;
     private int pageCount;
     private String thumbnailUrl;
     private ArrayList<String> authors;
+    @TextIndexed
     private String shortDescription;
     private String longDescription;
     private float price;
