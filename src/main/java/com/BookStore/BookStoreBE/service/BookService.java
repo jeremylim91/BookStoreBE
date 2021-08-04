@@ -106,7 +106,6 @@ public class BookService {
     public Book updateBook(String bookDetails) throws JsonProcessingException {
 //        Expect FE to send a json object containing all Book fields, taking note to re-use the
 //        original objectid.
-
 //        Parse the object into a book
         Book updatedBookDetails= HandleJson.convertToBookPojo(bookDetails);
         try{
